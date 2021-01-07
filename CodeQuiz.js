@@ -47,3 +47,20 @@ let questions = [
         correct: "C"
     }
 ];
+
+// The following variables the index of the starting question & the index of the previous question
+
+var lastQuestion = questions.lenght - 1;
+var runningQuestion = 0;
+
+// Function to show each question
+
+function showQuestion() {
+    var q = questions[runninQuestion];
+
+    question.text = "<p>" + q.question + "</p>";
+    qImg.innerHTML = "<img src = " + q.imgSrc + ">";
+    choiceA.text = q.choiceA;
+    choiceB.text = q.choiceB;
+    choiceC.text = q.choiceC;
+}
