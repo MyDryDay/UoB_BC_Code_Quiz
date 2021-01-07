@@ -71,10 +71,15 @@ function showQuestion() {
     choiceC.text = q.choiceC;
 }
 
+// Function to show how much of the quiz has been completed
+
 function showProgress() {
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
         progress.innerHTML += "<div class = 'prog' id =" + qIndex + "></div>";
     }
 }
 
+// Event listener to begin a function upon clicking the "Start Quiz" button
+
 start.addEventListener("click", startQuiz); 
+
