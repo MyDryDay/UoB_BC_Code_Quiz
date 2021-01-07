@@ -25,7 +25,7 @@ var questions = [
         choiceC: "CSS, Javascript & PHP",
         correct: "A"
     }, {
-        question: "What does CSS stand for?",
+        question: "What does HTML stand for?",
         imgSrc: "images/HTML.png",
         choiceA: "Holy Trinity of Machine Learning",
         choiceB: "HyperText Markup Language",
@@ -132,7 +132,6 @@ function checkAnswer(answer) {
         answerIsCorrect();
     } else {
         answerIsWrong();
-        timer--;
     }
     count = 0;
     if(runningQuestion < lastQuestion) {
@@ -146,21 +145,34 @@ function checkAnswer(answer) {
 
 // Function to show the score
 
+var scorePercent = Math.round(score / questions.length * 100);
+
 function showScore() {
     scoreContainer.style.display = "block";
 
     // Here the percentage a user scores is calculated
 
-    var scorePercent = Math.round(100 * score/questions.length);
+    var scorePercent = Math.round(score / questions.length * 100);
 
-    var finalScore = (scorePercent = 100) ? "Wow, 100%!" :
-                     (scorePercent >= 80) ? "Very good!" :
+    var finalScore = (scorePercent >= 80) ? "Very good!" :
                      (scorePercent >= 60) ? "Not bad!" :
                      (scorePercent >= 40) ? "Could use some work, keep trying!" :
                      (scorePercent >= 20) ? "You will get there eventually!" :
                      "Read some more guides and come back!";
     
     scoreContainer.innerHTML = "<p>" + finalScore + "</p>";
-    scoreContainer.innerHTML = "<p>" + scorePercent + "</p>";
+    scoreContainer.innerHTML += "<p>" + scorePercent + "</p>";
 
 }
+
+
+
+// TO DO
+// Fix timer, currently counts up from 0. Must count down from 10s
+// Timer is also dependant on each question i.e - a new timer for each question
+// Needs to be altered such that there is a single timer for the whole quiz
+
+// Fix showScore. Currently always displays 100%                                 - FIXED
+// scoreContainer is missing finalScore message                                  - FIXED
+// Progress works but does not actually display anything to screen
+// Create CSS for app
