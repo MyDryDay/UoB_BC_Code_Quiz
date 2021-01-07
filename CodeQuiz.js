@@ -2,7 +2,7 @@
 
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
-var questions = document.getElementById("questions");
+var question = document.getElementById("question");
 var qImg = document.getElementById("qImg");
 var choices = document.getElementById("choices");
 var choiceA = document.getElementById("A");
@@ -12,11 +12,11 @@ var timer = document.getElementById("timer");
 var counter = document.getElementById("counter");
 var timeGauge = document.getElementById("timeGauge");
 var progress = document.getElementById("progress");
-var scoreContainer = docuemnt.getElementById("scoreContainer");
+var scoreContainer = document.getElementById("scoreContainer");
 
 // Create an array to store our questions, choices & correct answer
 
-let questions = [
+var questions = [
     {
         question: "What are the 3 core technologies used in web development?",
         imgSrc: "images/WebTech.jpg",
@@ -52,6 +52,12 @@ let questions = [
 
 var lastQuestion = questions.lenght - 1;
 var runningQuestion = 0;
+var count = 0;
+var questionTime = 10; // 10s
+var gaugeWidth = 150; // 150px
+var gaugeUnit = gaugeWidth / questionTime;
+var TIMER;
+var score = 0;
 
 // Function to show each question
 
@@ -64,3 +70,11 @@ function showQuestion() {
     choiceB.text = q.choiceB;
     choiceC.text = q.choiceC;
 }
+
+function showProgress() {
+    for(let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
+        progress.innerHTML += "<div class = 'prog' id =" + qIndex + "></div>";
+    }
+}
+
+start.addEventListener("click", startQuiz); 
