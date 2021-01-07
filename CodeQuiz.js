@@ -50,7 +50,7 @@ var questions = [
 
 // The following variables the index of the starting question & the index of the previous question
 
-var lastQuestion = questions.lenght - 1;
+var lastQuestion = questions.length - 1;
 var runningQuestion = 0;
 var count = 0;
 var questionTime = 10; // 10s
@@ -62,24 +62,105 @@ var score = 0;
 // Function to show each question
 
 function showQuestion() {
-    var q = questions[runninQuestion];
+    var q = questions[runningQuestion];
 
-    question.text = "<p>" + q.question + "</p>";
+    question.innerHTML = "<p>" + q.question + "</p>";
     qImg.innerHTML = "<img src = " + q.imgSrc + ">";
-    choiceA.text = q.choiceA;
-    choiceB.text = q.choiceB;
-    choiceC.text = q.choiceC;
-}
-
-// Function to show how much of the quiz has been completed
-
-function showProgress() {
-    for(let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
-        progress.innerHTML += "<div class = 'prog' id =" + qIndex + "></div>";
-    }
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
 }
 
 // Event listener to begin a function upon clicking the "Start Quiz" button
 
 start.addEventListener("click", startQuiz); 
 
+// Function to begin the quiz - shows first question, progress & begins timer
+
+function startQuiz() {
+    start.style.display = "none";
+    showQuestion();
+    quiz.style.display = "block";
+    showProgress();
+    showCounter();
+    TIMER = setInterval(showCounter, 1000);
+}
+
+// Function to show how much of the quiz has been completed
+
+function showProgress() {
+    for(var qIndex = 0; qIndex <= lastQuestion; qIndex++) {
+        progress.innerHTML += "<div class='prog' id =" + qIndex + "></div>";
+    }
+}
+
+// Functions to show which questions were correct/incorrect in HTML
+
+function answerIsCorrect() {
+    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+}
+
+function answerIsWrong() {
+    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+}
+
+// Function to control the counter
+
+function showCounter() {
+    if(count <= questionTime) {
+        counter.innerHTML = count;
+        timeGauge.style.width = count * gaugeUnit + "px";
+        count++
+    } else {
+        count = 0;
+        answerIsWrong();
+        if(runningQuestion < lastQuestion) {
+            runningQuestion++;
+            showQuestion();
+        } else {
+            clearInterval(TIMER);
+            showScore();
+        }
+    }
+}
+
+// Function that checks the answer & moves onto the next question or decreases the timer
+
+function checkAnswer(answer) {
+    if(answer == questions[runningQuestion].correct) {
+        score++;
+        answerIsCorrect();
+    } else {
+        answerIsWrong();
+        timer--;
+    }
+    count = 0;
+    if(runningQuestion < lastQuestion) {
+        runningQuestion++;
+        showQuestion();
+    } else {
+        clearInterval(TIMER);
+        showScore();
+    }
+}
+
+// Function to show the score
+
+function showScore() {
+    scoreContainer.style.display = "block";
+
+    // Here the percentage a user scores is calculated
+
+    var scorePercent = Math.round(100 * score/questions.length);
+
+    var finalScore = (scorePercent = 100) ? "Wow, 100%!" :
+                     (scorePercent >= 80) ? "Very good!" :
+                     (scorePercent >= 60) ? "Not bad!" :
+                     (scorePercent >= 40) ? "Could use some work, keep trying!" :
+                     (scorePercent >= 20) ? "You will get there eventually!" :
+                     "Read some more guides and come back!";
+    
+    scoreContainer.innerHTML = "<p>" + finalScore + "</p>";
+    scoreContainer.innerHTML = "<p>" + scorePercent + "</p>";
+
+}
