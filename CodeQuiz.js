@@ -14,6 +14,10 @@ var timeGauge = document.getElementById("timeGauge");
 var progress = document.getElementById("progress");
 var scoreContainer = document.getElementById("scoreContainer");
 
+var totalScore = document.getElementById("totalScore");
+var totalTime = document.getElementById("totalTime");
+var message = document.getElementById("message");
+
 // Create an array to store our questions, choices & correct answer
 
 var questions = [
@@ -52,10 +56,10 @@ var questions = [
 
 var lastQuestion = questions.length - 1;
 var runningQuestion = 0;
-var count = 0;
-var questionTime = 10; // 10s
+var count = 60;
+var quizTime = 60; // 10s
 var gaugeWidth = 150; // 150px
-var gaugeUnit = gaugeWidth / questionTime;
+var gaugeUnit = gaugeWidth / quizTime;
 var TIMER;
 var score = 0;
 
@@ -107,12 +111,12 @@ function answerIsWrong() {
 // Function to control the counter
 
 function showCounter() {
-    if(count <= questionTime) {
+    if(count <= quizTime && count >= 0) {
         counter.innerHTML = count;
         timeGauge.style.width = count * gaugeUnit + "px";
-        count++
+        count--;
     } else {
-        count = 0;
+        // count = 10;
         answerIsWrong();
         if(runningQuestion < lastQuestion) {
             runningQuestion++;
@@ -133,7 +137,7 @@ function checkAnswer(answer) {
     } else {
         answerIsWrong();
     }
-    count = 0;
+    // count = 10;
     if(runningQuestion < lastQuestion) {
         runningQuestion++;
         showQuestion();
@@ -145,34 +149,47 @@ function checkAnswer(answer) {
 
 // Function to show the score
 
-var scorePercent = Math.round(score / questions.length * 100);
-
 function showScore() {
     scoreContainer.style.display = "block";
 
     // Here the percentage a user scores is calculated
 
     var scorePercent = Math.round(score / questions.length * 100);
+    
+    // This is a variation of the score, the remaining time left of the quiz 
+
+    var timeRemaining = count;
+
+    // The following displays a message based on the number of questions answered correctly
 
     var finalScore = (scorePercent >= 80) ? "Very good!" :
                      (scorePercent >= 60) ? "Not bad!" :
                      (scorePercent >= 40) ? "Could use some work, keep trying!" :
                      (scorePercent >= 20) ? "You will get there eventually!" :
                      "Read some more guides and come back!";
+
+    totalScore.innerHTML = "You got " + scorePercent + "%";
+    totalTime.innerHTML = "You had " + timeRemaining + " seconds left!";
+    message.innerHTML = finalScore;
     
-    scoreContainer.innerHTML = "<p>" + finalScore + "</p>";
-    scoreContainer.innerHTML += "<p>" + scorePercent + "</p>";
+    // scoreContainer.innerHTML = "<p>" + finalScore + "</p>";
+    // scoreContainer.innerHTML += "<p>" + scorePercent + "</p>";
+    // scoreContainer.innerHTML += "<p>" + timeRemaining + "</p>";
 
 }
 
 
 
 // TO DO
-// Fix timer, currently counts up from 0. Must count down from 10s
-// Timer is also dependant on each question i.e - a new timer for each question
-// Needs to be altered such that there is a single timer for the whole quiz
+// Fix timer, currently counts up from 0. Must count down from 10s               - FIXED
+// Timer is also dependant on each question i.e - a new timer for each question  - FIXED
+// Needs to be altered such that there is a single timer for the whole quiz      - FIXED
 
 // Fix showScore. Currently always displays 100%                                 - FIXED
 // scoreContainer is missing finalScore message                                  - FIXED
-// Progress works but does not actually display anything to screen
-// Create CSS for app
+
+// Create leaderboard feature where users are able to record their score         -
+// & their initials
+
+// Progress works but does not actually display anything to screen               -
+// Create CSS for app                                                            -
