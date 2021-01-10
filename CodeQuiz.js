@@ -150,10 +150,8 @@ function showScore() {
     totalScore.innerHTML = "You got " + scorePercent + "%";
     totalTime.innerHTML = "You had " + timeRemaining + " seconds left!";
     message.innerHTML = finalScore;
-
-
-
 }
+
 
 
 
@@ -165,8 +163,8 @@ function showScore() {
 // Fix showScore. Currently always displays 100%                                 - FIXED
 // scoreContainer is missing finalScore message                                  - FIXED
 
-// Create leaderboard feature where users are able to record their score         -
+// Create leaderboard feature where users are able to record their score         - COULDN'T FIGURE IT OUT
 // & their initials
 
-// Progress works but does not actually display anything to screen               -
-// Create CSS for app                                                            -
+// Progress works but does not actually display anything to screen               - REMOVED. OVERCOMPLICATED & UNECESSARY
+// Create CSS for app                                                            - FIXED
