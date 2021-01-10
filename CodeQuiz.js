@@ -11,7 +11,6 @@ var choiceC = document.getElementById("C");
 var timer = document.getElementById("timer");
 var counter = document.getElementById("counter");
 var timeGauge = document.getElementById("timeGauge");
-var progress = document.getElementById("progress");
 var scoreContainer = document.getElementById("scoreContainer");
 
 var totalScore = document.getElementById("totalScore");
@@ -85,27 +84,9 @@ function startQuiz() {
     start.style.display = "none";
     showQuestion();
     quiz.style.display = "block";
-    showProgress();
+    // showProgress();
     showCounter();
     TIMER = setInterval(showCounter, 1000);
-}
-
-// Function to show how much of the quiz has been completed
-
-function showProgress() {
-    for(var qIndex = 0; qIndex <= lastQuestion; qIndex++) {
-        progress.innerHTML += "<div class='prog' id =" + qIndex + "></div>";
-    }
-}
-
-// Functions to show which questions were correct/incorrect in HTML
-
-function answerIsCorrect() {
-    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-}
-
-function answerIsWrong() {
-    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
 // Function to control the counter
@@ -116,8 +97,7 @@ function showCounter() {
         timeGauge.style.width = count * gaugeUnit + "px";
         count--;
     } else {
-        // count = 10;
-        answerIsWrong();
+
         if(runningQuestion < lastQuestion) {
             runningQuestion++;
             showQuestion();
@@ -133,9 +113,8 @@ function showCounter() {
 function checkAnswer(answer) {
     if(answer == questions[runningQuestion].correct) {
         score++;
-        answerIsCorrect();
     } else {
-        answerIsWrong();
+   
     }
     // count = 10;
     if(runningQuestion < lastQuestion) {
@@ -171,10 +150,6 @@ function showScore() {
     totalScore.innerHTML = "You got " + scorePercent + "%";
     totalTime.innerHTML = "You had " + timeRemaining + " seconds left!";
     message.innerHTML = finalScore;
-    
-    // scoreContainer.innerHTML = "<p>" + finalScore + "</p>";
-    // scoreContainer.innerHTML += "<p>" + scorePercent + "</p>";
-    // scoreContainer.innerHTML += "<p>" + timeRemaining + "</p>";
 
 }
 
