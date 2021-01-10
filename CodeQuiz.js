@@ -54,7 +54,7 @@ var questions = [
 // The following variables the index of the starting question & the index of the previous question
 
 var lastQuestion = questions.length - 1;
-var runningQuestion = 0;
+var currentQuestion = 0;
 var count = 60;
 var quizTime = 60; // 10s
 var gaugeWidth = 150; // 150px
@@ -65,7 +65,7 @@ var score = 0;
 // Function to show each question
 
 function showQuestion() {
-    var q = questions[runningQuestion];
+    var q = questions[currentQuestion];
 
     question.innerHTML = "<p>" + q.question + "</p>";
     qImg.innerHTML = "<img src = " + q.imgSrc + ">";
@@ -98,8 +98,8 @@ function showCounter() {
         count--;
     } else {
 
-        if(runningQuestion < lastQuestion) {
-            runningQuestion++;
+        if(currentQuestion < lastQuestion) {
+            currentQuestion++;
             showQuestion();
         } else {
             clearInterval(TIMER);
@@ -111,14 +111,14 @@ function showCounter() {
 // Function that checks the answer & moves onto the next question or decreases the timer
 
 function checkAnswer(answer) {
-    if(answer == questions[runningQuestion].correct) {
+    if(answer == questions[currentQuestion].correct) {
         score++;
     } else {
    
     }
     // count = 10;
-    if(runningQuestion < lastQuestion) {
-        runningQuestion++;
+    if(currentQuestion < lastQuestion) {
+        currentQuestion++;
         showQuestion();
     } else {
         clearInterval(TIMER);
@@ -150,6 +150,8 @@ function showScore() {
     totalScore.innerHTML = "You got " + scorePercent + "%";
     totalTime.innerHTML = "You had " + timeRemaining + " seconds left!";
     message.innerHTML = finalScore;
+
+
 
 }
 
