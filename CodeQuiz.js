@@ -56,8 +56,8 @@ var questions = [
 var lastQuestion = questions.length - 1;
 var currentQuestion = 0;
 var count = 60;
-var quizTime = 60; // 10s
-var gaugeWidth = 150; // 150px
+var quizTime = 60; // 60s
+var gaugeWidth = 90; // 90px
 var gaugeUnit = gaugeWidth / quizTime;
 var TIMER;
 var score = 0;
@@ -94,7 +94,7 @@ function startQuiz() {
 function showCounter() {
     if(count <= quizTime && count >= 0) {
         counter.innerHTML = count;
-        timeGauge.style.width = count * gaugeUnit + "px";
+        timeGauge.style.width = count / gaugeUnit + "px";
         count--;
     } else {
 
