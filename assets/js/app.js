@@ -1,5 +1,5 @@
 // variables 
-let currQuestion = 0; // Index is at 0 
+let currQuestionIndex = 0; // Index is at 0 
 const time = questions.length * 20; // 20 seconds per question
 let timer; // Declaring empty constiable for timer
 
@@ -23,21 +23,31 @@ const startQuiz = () => {
     // Remove the 'hide' class from questionEl & answersEl
     const removeHide = [questionEl, answersEl];
 
-    removeHide.forEach(async el => {
+    removeHide.forEach(el => {
         el.classList.remove('hide');
         console.log(el);
     });
 
-    // questionEl.classList.remove('hide');
-    // queTitleEl.classList.remove('hide');
-    // ansAEl.classList.remove('hide');
-    // ansBEl.classList.remove('hide');
-    // ansCEl.classList.remove('hide');
-
+    getQuestion();
 }
 
 
 // Function to get new question title & choices
+const getQuestion = () => {
+    let currQuestion = questions[currQuestionIndex];
+    queTitleEl.textContent = currQuestion.question;
+
+    const clearEl = [ansAEl, ansBEl, ansCEl];
+    clearEl.forEach(el => {
+        el.textContent = '';
+    });
+
+    ansAEl.textContent = currQuestion.ansA;
+    ansBEl.textContent = currQuestion.ansB;
+    ansCEl.textContent = currQuestion.ansC;
+
+    document.querySelectorAll('li').onclick = handleClick;
+}
 
 // Function to check which answer user has selected
 // If correct, move onto next question, if incorrect subtract time

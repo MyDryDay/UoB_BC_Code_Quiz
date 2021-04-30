@@ -6,6 +6,15 @@
     text-align: center;
 }
 
+.questions {
+    cursor:pointer;
+}
+
+.questions:hover {
+    background-color: blue;
+    color: white;
+}
+
 
 
 
