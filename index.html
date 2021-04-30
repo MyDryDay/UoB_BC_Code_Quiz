@@ -34,13 +34,14 @@
     <div class='container'>
         <div class='startScn' id='startScn'>
             <h1>Coding Quiz</h1>
-            <button id='startQuiz'>Start!</button>
+            <button class='btn btn-primary' id='startQuiz'>Start!</button>
         </div>
 
         <!-- Questions will be displayed here -->
         <div class='hide card' id='questions'>
             <div class='card-body'>
-                <h5 class='card-title questionTitle'></h5>
+                <h5 class='card-title'>Question: </h5>
+                <p class='card-text questionTitle'></p>
             </div>
         </div>
 
@@ -64,7 +65,7 @@
                 <p>Your final score is: <span id='finalScore'></span>!</p>
                 <p>Please enter your initials for the hiscores:
                     <input type='text' id='initials' max='3'/>
-                    <button id='submit'>Submit</button>
+                    <button class='btn btn-primary' id='submit'>Submit</button>
                 </p>
             </div>
         </div>
