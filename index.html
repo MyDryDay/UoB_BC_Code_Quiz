@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!-- Collapsible navbar -->
     <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
         <div class='container-fluid'>
             <a class='navbar-brand' href='#'>Coding Quiz</a>
@@ -28,6 +29,51 @@
             </div>
         </div>
     </nav>
+
+    <!-- Main body of the website -->
+    <div class='container'>
+        <div class='startScn' id='startScn'>
+            <h1>Coding Quiz</h1>
+            <button id='startQuiz'>Start!</button>
+        </div>
+
+        <!-- Questions will be displayed here -->
+        <div class='hide card' id='questions'>
+            <div class='card-body'>
+                <h5 class='card-title questionTitle'></h5>
+            </div>
+        </div>
+
+        <!-- Answers will be displayed here -->
+        <div class='answers card' id='answers'>
+            <div class='card-header'>
+                Answers: 
+            </div>
+            <ul class='list-group list-group-flush'>
+                <li class='list-group-item questions' id='ansA'></li>
+                <li class='list-group-item questions' id='ansB'></li>
+                <li class='list-group-item questions' id='ansC'></li>
+            </ul>
+        </div>
+
+        <div class='card hide' id='endScn'>
+            <div class='card-header'>
+                Finished!
+            </div>
+            <div class='card-body'>
+                <p>Your final score is: <span id='finalScore'></span>!</p>
+                <p>Please enter your initials for the hiscores:
+                    <input type='text' id='initials' max='3'/>
+                    <button id='submit'>Submit</button>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Time remaining & progress bar -->
+    <div class='timer'>Time: <span id='time'>0</span></div>
+    <div class='progressBar'></div>
 
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
