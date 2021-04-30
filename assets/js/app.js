@@ -46,13 +46,27 @@ const getQuestion = () => {
     ansBEl.textContent = currQuestion.ansB;
     ansCEl.textContent = currQuestion.ansC;
 
-    document.querySelectorAll('li').onclick = handleClick;
+    const ansIds = ['ansA', 'ansB', 'ansC'];
+    ansIds.forEach(el => {
+        document.getElementById(el).addEventListener('click', handleClick);
+    });
+
 }
 
 // Function to check which answer user has selected
 // If correct, move onto next question, if incorrect subtract time
 // If correct, indicate this to user somehow, same with incorrect
 // If no more questions, end the quiz, if there are questions call this function again
+const handleClick = () => {
+    currQuestionIndex++;
+
+    if(currQuestionIndex === questions.length){
+        console.log("This is where our endQuiz function will be called.");
+    } else {
+        getQuestion();
+    }
+}
+
 
 // Function to end the quiz
 
