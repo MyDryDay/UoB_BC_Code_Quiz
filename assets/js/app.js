@@ -1,6 +1,6 @@
 // variables 
 let currQuestionIndex = 0; // Index is at 0 
-const time = questions.length * 20; // 20 seconds per question
+let time = questions.length * 20; // 20 seconds per question
 let timer; // Declaring empty constiable for timer
 
 const btnStart = document.getElementById('startQuiz');
@@ -12,7 +12,7 @@ const ansBEl = document.getElementById('ansB');
 const ansCEl = document.getElementById('ansC');
 const initialEl = document.getElementById('initials');
 const btnSubmit = document.getElementById('submit');
-const timerEl = document.getElementById('timer')
+let timerEl = document.getElementById('timer')
 
 // Function to start quiz
 const startQuiz = () => {
@@ -27,6 +27,11 @@ const startQuiz = () => {
         el.classList.remove('hide');
         console.log(el);
     });
+
+    // Set the timer to increment/decrement in units of one second
+    timer = setInterval(timerFunct, 1000);
+    // Set the contents of timerEl to the value of the timer itself
+    timerEl.textContent = time;
 
     getQuestion();
 }
