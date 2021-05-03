@@ -62,6 +62,7 @@ const handleClick = () => {
 
     if(currQuestionIndex === questions.length){
         console.log("This is where our endQuiz function will be called.");
+        endQuiz();
     } else {
         getQuestion();
     }
@@ -69,6 +70,15 @@ const handleClick = () => {
 
 
 // Function to end the quiz
+function endQuiz(){
+    // Show the end portion
+    const endEl = document.getElementById('endScn');
+    endEl.classList.remove('hide');
+
+    // Hide the questions & answers portions
+    questionEl.setAttribute('class', 'hide');
+    answersEl.setAttribute('class', 'hide');
+}
 
 // Function to handle the timer & progress bar
 // If timer reaches 0, end the quiz
