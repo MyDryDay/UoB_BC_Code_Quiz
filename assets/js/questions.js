@@ -6,27 +6,27 @@ var questions = [
         ansA: "HTML, CSS & Javascript",
         ansB: "HTML, Typescript & jQuery",
         ansC: "CSS, Javascript & PHP",
-        correct: "A"
+        correct: "ansA"
     }, {
         question: "What does HTML stand for?",
         imgSrc: "images/HTML.png",
         ansA: "Holy Trinity of Machine Learning",
         ansB: "HyperText Markup Language",
         ansC: "Human Telepathy Magic Liquid",
-        correct: "B"
+        correct: "ansB"
     }, {
         question: "What does DOM stand for?",
         imgSrc: "images/DOM.png",
         ansA: "Disco Oriented Mechanics",
         ansB: "Document Object Model",
         ansC: "Delicate Oriental Manuscripts",
-        correct: "B"
+        correct: "ansB"
     }, {
         question: "What kind of loop is pictured?",
         imgSrc: "images/ForLoop.jpg",
         ansA: "A while loop",
         ansB: "A for each loop",
         ansC: "A for loop",
-        correct: "C"
+        correct: "ansC"
     }
 ];

@@ -61,7 +61,25 @@ const getQuestion = () => {
 // If correct, move onto next question, if incorrect subtract time
 // If correct, indicate this to user somehow, same with incorrect
 // If no more questions, end the quiz, if there are questions call this function again
-const handleClick = () => {
+const handleClick = (e) => {
+    console.log(e.target.id);
+    // If the answer clicked is not equal to the correct answer, subtract 10 seconds from the timer
+    // and check if the timer has hit 0 as a result.
+    // Refresh the timer value displayed on the page.
+    if(e.target.id !== questions[currQuestionIndex].correct){
+        // set time equal to itself - 10
+        time -= 10;
+
+        // Check to see if the timer has dropped below 0 as a result of answering incorrectly
+        if(time < 0){
+            // If it has, set time to 0
+            time = 0;
+        }
+
+        // Refresh the time displayed on the HTML page
+        timerEl.textContent = time;
+    }
+    
     currQuestionIndex++;
 
     // if(currQuestionIndex === questions.length){
@@ -77,6 +95,9 @@ const handleClick = () => {
 
 // Function to end the quiz
 const endQuiz = () => {
+    // Prevent the timer from decreasing further
+    clearInterval(timer);
+
     // Show the end portion
     const endEl = document.getElementById('endScn');
     endEl.classList.remove('hide');
