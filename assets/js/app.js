@@ -25,7 +25,6 @@ const startQuiz = () => {
 
     removeHide.forEach(el => {
         el.classList.remove('hide');
-        console.log(el);
     });
 
     // Set the timer to increment/decrement in units of one second
