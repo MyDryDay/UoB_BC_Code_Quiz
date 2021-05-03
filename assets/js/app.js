@@ -82,6 +82,16 @@ function endQuiz(){
 
 // Function to handle the timer & progress bar
 // If timer reaches 0, end the quiz
+function timer(){
+    // Reduce the timer each second
+    time--;
+    timerEl = textContent = time;
+
+    // If timer reaches 0, end the quiz
+    if(time <= 0){
+        endQuiz();
+    }
+}
 
 // Function to handle saving scores & initials to hiscores
 
