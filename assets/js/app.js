@@ -92,7 +92,7 @@ const endQuiz = () => {
 const timerFunct = () => {
     // Reduce the timer each second
     time--;
-    timerEl = textContent = time;
+    timerEl.textContent = time;
 
     // If timer reaches 0, end the quiz
     if(time <= 0){
