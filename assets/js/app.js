@@ -60,12 +60,14 @@ const getQuestion = () => {
 const handleClick = () => {
     currQuestionIndex++;
 
-    if(currQuestionIndex === questions.length){
-        console.log("This is where our endQuiz function will be called.");
-        endQuiz();
-    } else {
-        getQuestion();
-    }
+    // if(currQuestionIndex === questions.length){
+    //     console.log("This is where our endQuiz function will be called.");
+    //     endQuiz();
+    // } else {
+    //     getQuestion();
+    // }
+
+    currQuestionIndex === questions.length ? endQuiz() : getQuestion();
 }
 
 
@@ -82,7 +84,7 @@ function endQuiz(){
 
 // Function to handle the timer & progress bar
 // If timer reaches 0, end the quiz
-function timer(){
+function timerFunct(){
     // Reduce the timer each second
     time--;
     timerEl = textContent = time;
