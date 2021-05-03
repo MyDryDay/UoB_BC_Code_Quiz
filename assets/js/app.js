@@ -77,7 +77,7 @@ const handleClick = () => {
 
 
 // Function to end the quiz
-function endQuiz(){
+const endQuiz = () => {
     // Show the end portion
     const endEl = document.getElementById('endScn');
     endEl.classList.remove('hide');
@@ -89,7 +89,7 @@ function endQuiz(){
 
 // Function to handle the timer & progress bar
 // If timer reaches 0, end the quiz
-function timerFunct(){
+const timerFunct = () => {
     // Reduce the timer each second
     time--;
     timerEl = textContent = time;
