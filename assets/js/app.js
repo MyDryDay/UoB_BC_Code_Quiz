@@ -2,6 +2,7 @@
 let currQuestionIndex = 0; // Index is at 0 
 let time = questions.length * 20; // 20 seconds per question
 let timer; // Declaring empty constiable for timer
+let progress =  [];
 
 const btnStart = document.getElementById('startQuiz');
 const questionEl = document.getElementById('questions');
@@ -12,7 +13,8 @@ const ansBEl = document.getElementById('ansB');
 const ansCEl = document.getElementById('ansC');
 const initialEl = document.getElementById('initials');
 const btnSubmit = document.getElementById('submit');
-let timerEl = document.getElementById('timer')
+let timerEl = document.getElementById('timer');
+let progressEl = document.getElementById('progressBar');
 
 // Function to start quiz
 const startQuiz = () => {
@@ -31,6 +33,9 @@ const startQuiz = () => {
     timer = setInterval(timerFunct, 1000);
     // Set the contents of timerEl to the value of the timer itself
     timerEl.textContent = time;
+
+    // Set the contents of the progress bar to the progress arr
+    progressEl.textContent = progress;
 
     getQuestion();
 }
@@ -62,13 +67,19 @@ const getQuestion = () => {
 // If correct, indicate this to user somehow, same with incorrect
 // If no more questions, end the quiz, if there are questions call this function again
 const handleClick = (e) => {
-    console.log(e.target.id);
+    const correct = 'O';
+    const incorrect = 'X';
     // If the answer clicked is not equal to the correct answer, subtract 10 seconds from the timer
     // and check if the timer has hit 0 as a result.
     // Refresh the timer value displayed on the page.
     if(e.target.id !== questions[currQuestionIndex].correct){
         // set time equal to itself - 10
         time -= 10;
+
+        // Answer incorrect, so push incorrect variable to progress array
+        progress.push(incorrect);
+        // Refresh the array
+        progressEl.textContent = progress;
 
         // Check to see if the timer has dropped below 0 as a result of answering incorrectly
         if(time < 0){
@@ -78,6 +89,11 @@ const handleClick = (e) => {
 
         // Refresh the time displayed on the HTML page
         timerEl.textContent = time;
+    }else{
+        // Answer is correct, so push correct variable to progress array
+        progress.push(correct);
+        // Refresh the array
+        progressEl.textContent = progress;
     }
     
     currQuestionIndex++;
@@ -97,6 +113,10 @@ const handleClick = (e) => {
 const endQuiz = () => {
     // Prevent the timer from decreasing further
     clearInterval(timer);
+
+    // Show the final score
+    const scoreEl = document.getElementById('finalScore');
+    scoreEl.textContent = time;
 
     // Show the end portion
     const endEl = document.getElementById('endScn');
