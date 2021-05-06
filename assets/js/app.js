@@ -141,7 +141,36 @@ const timerFunct = () => {
 }
 
 // Function to handle saving scores & initials to hiscores
+const saveScore = () => {
+    // Retrieves value of input field
+    let playerInitials = initialEl.value.trim();
+
+    // Make sure value of playerInitials isn't empty
+    if(playerInitials !== ''){
+        // Create object to store score for current user
+        let currScore = {
+            score: time,
+            initials: playerInitials
+        };
+
+        // If scores exist in local storage, get them.
+        // If not, create an empty scores array
+        let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
+        
+        // Save the currScore value to local storage
+        // Push value of currScore to the scores array
+        scores.push(currScore);
+        // Save the new scores array to local storage
+        window.localStorage.setItem('scores', JSON.stringify(currScore));
+
+        // Redirect to scores page once completed
+    }
+
+
+    
+}
 
 // Declare 'on click' events
 // submit for hiscore & start for beginning the quiz
 btnStart.onclick = startQuiz;
+btnSubmit.onclick = saveScore;
