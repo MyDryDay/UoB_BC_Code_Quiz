@@ -156,18 +156,17 @@ const saveScore = () => {
         // If scores exist in local storage, get them.
         // If not, create an empty scores array
         let scores = JSON.parse(window.localStorage.getItem('scores')) || [];
-        
+
         // Save the currScore value to local storage
         // Push value of currScore to the scores array
         scores.push(currScore);
         // Save the new scores array to local storage
-        window.localStorage.setItem('scores', JSON.stringify(currScore));
+        window.localStorage.setItem('scores', JSON.stringify(scores));
 
         // Redirect to scores page once completed
+        window.location.href = 'scores.html';
     }
 
-
-    
 }
 
 // Declare 'on click' events
