@@ -17,4 +17,13 @@ const showScores = () => {
     });
 }
 
+const resetScore = () => {
+    // Remove the scores array from local storage
+    window.localStorage.removeItem('scores');
+    // Reload the current page
+    window.location.reload();
+}
+
+document.getElementById('empty').onclick = resetScore;
+
 showScores();
