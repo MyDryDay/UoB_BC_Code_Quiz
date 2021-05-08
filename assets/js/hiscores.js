@@ -10,7 +10,7 @@ const showScores = () => {
         // First, create <li> elements to go inside the <ol> element
         const listEl = document.createElement('li');
         // Set the content of the <li> tags to the values of the initials and the score
-        listEl.textContent = `${scores.initials} finsished with ${scores.score} points!`;
+        listEl.textContent = `${scores.initials} finished with ${scores.score} points!`;
         // Second, append each of the created <li> elements to the <ol> element
         const orderedListEl = document.getElementById('scores');
         orderedListEl.appendChild(listEl);
